@@ -75,6 +75,25 @@ fun main(args: Array<String>) {
 
     println(result)
 }
-
+fun maxSubArray(nums: IntArray): Int {
+    var max_so_far = nums[0]
+    var max_ending = 0
+    var start = 0
+    var end  = 0
+    var s= 0
+    for(i in 0..nums.size-1){
+        max_ending +=nums[i]
+        if(max_so_far< max_ending){
+            max_so_far = max_ending
+            start = s
+            end = i
+        }
+        if(max_ending<0){
+            max_ending = 0
+            s =i+1
+        }
+    }
+    return max_so_far
+}
 
 

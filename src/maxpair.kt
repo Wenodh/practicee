@@ -29,29 +29,35 @@ import kotlin.text.*
 
 fun maxPairs(skillLevel: Array<Int>, minDiff: Int): Int {
     var a = skillLevel.sortedArray()
-    var x = 0
+    var x = a[0]
     var y = 0
-    loop@ for (i in 0..a.size - 2) {
-        for (j in i + 1..a.size - 1) {
-            if (a[j] - a[i] <= minDiff) {
-                x = i
-                y = j
-                break@loop
-            }
+    for (i in 1..a.size-1){
+        if (a[i]-x >= minDiff){
+            y++
+            x=a[y]
         }
     }
-    var count = 0
-    if (x >= 0 && y > 0) {
-        for (i in x..x+a.size-y-1) {
-            for (j in y..a.size - 1) {
-                if (a[j] - a[i] <= minDiff) {
-                    count++
-                    break
-                }
-            }
-        }
-    }
-    return count
+//    loop@ for (i in 0..a.size - 2) {
+//        for (j in i + 1..a.size - 1) {
+//            if (a[j] - a[i] <= minDiff) {
+//                x = i
+//                y = j
+//                break@loop
+//            }
+//        }
+//    }
+//    var count = 0
+//    if (x >= 0 && y > 0) {
+//        for (i in x..x+a.size-y-1) {
+//            for (j in y..a.size - 1) {
+//                if (a[j] - a[i] <= minDiff) {
+//                    count++
+//                    break
+//                }
+//            }
+//        }
+//    }
+    return y
 
 }
 
